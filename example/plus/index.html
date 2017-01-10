@@ -1,0 +1,62 @@
+<html ng-app="myApp">
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="http://apps.bdimg.com/libs/angular.js/1.2.16/angular.min.js"></script>
+    <style>
+ul li{
+	padding:20px 30px;
+	background-color:#e35885;
+	margin-bottom:8px;
+	box-shadow:0 1px 1px rgba(0,0,0,0.1);
+	cursor:pointer;
+}
+     ul li.active{
+	background-color:#8ec16d;
+}
+     
+   </style>
+    <script>
+      var app=angular.module("myApp",[]);
+      app.controller('ctrl',function($http,$scope){
+    	  $http.get("http://localhost/angularjs/phpmvc/plus/script.json")
+    	  .success(function (response) {  
+    		  $scope.services=response;
+    		  });
+    	  $scope.toggleActive=function(s){
+    		  s.active = !s.active;
+    	  }
+    	  $scope.total=function(){
+    			var total = 0;
+
+    			// Use the angular forEach helper method to
+    			// loop through the services array:
+
+    			angular.forEach($scope.services, function(s){
+    				
+    				if (s.active){
+    					
+    					total+= s.price;
+    				}
+    			});
+
+    			return total;
+    	  }
+    	  
+      });
+    
+    </script>
+</head>
+<body>
+<div ng-controller="ctrl">
+    <ul>
+      <li ng-repeat="service in services" ng-click="toggleActive(service)" ng-class="{'active':service.active, 'inactive':service.inactive}">{{service.name}} {{service.price | currency}}</li>
+    
+    </ul>
+    	<div class="total">
+				<!-- Calculate the total price of all chosen services. Format it as currency. -->
+				Total: <span>{{total() | currency}}</span>
+			</div>
+</div>
+</body>
+</html>

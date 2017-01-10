@@ -1,0 +1,17 @@
+<div class="jumbotron text-center">
+   <h1>关于我们</h1>
+   <p>这个页面展示了多种的<span class="text-danger">内嵌</span>的知识</p>
+   <a ui-sref=".list" class="btn btn-primary">关于我们1</a>
+   <a ui-sref=".paragraph" class="btn btn-danger">关于我们2</a>
+</div>
+
+<div class="row">
+   <div class="col-sm-6">
+    
+     <div ui-view="one"></div>
+   </div>
+   
+     <div class="col-sm-6">
+   <div ui-view="two"></div>
+   </div>
+</div>
