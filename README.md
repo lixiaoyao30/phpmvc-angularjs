@@ -5,3 +5,5 @@ put the style and angularjs for curd
 This shows how one can build an MVC app with PHP and angularjs.
 License
 MIT License (MIT)
+
+The angularjs can send and fetch with ajax.
